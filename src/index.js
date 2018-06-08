@@ -1,8 +1,8 @@
 import dva, { connect } from 'dva';
 import { Router, Route, Switch } from 'dva/router';
-import key from 'keymaster';
 
-import styles from './index.less';
+import Home from './pages/Home';
+import Song from './pages/Song';
 
 // 1. Initialize
 const app = dva();
@@ -12,63 +12,30 @@ const app = dva();
 app.model({
   namespace: 'count',
   subscriptions: {
-    keyboardWatcher({dispatch}) {
-      key('⌘+up, ctrl+up', () => { dispatch({type:'addThenMinus'}) });
-    },
   },
   effects: {
-    *addThenMinus(action, { call, put }) {
-      yield put({type: 'add'});
-      yield call(delay, 500);
-      yield put({ type: 'minus'});
-    },
   },
   state: {
     record: 0,
     current: 0,
   },
   reducers: {
-    add(state) {
-      const newCurrent = state.current + 1;
-      return { ...state,
-        record: newCurrent > state.record ? newCurrent : state.record,
-        current: newCurrent,
-      };
-    },
-    minus(state) {
-      return { ...state, current: state.current - 1};
-    },
   },
 });
 
-function delay(timeout) {
-  return new Promise(resolve => {
-    setTimeout(resolve, timeout);
-  });
-}
-
-const CountApp = ({count, dispatch}) => {
-  return (
-    <div className={styles.normal}>
-      <div className={styles.record}>Highest Record {count.record}</div>
-      <div className={styles.current}>{count.current}</div>
-      <div className={styles.button}>
-        <button onClick={() => { dispatch({type: 'count/addThenMinus'}); }}>+</button>
-      </div>
-    </div>
-  );
-};
 
 function mapStateToProps(state) {
   return { count: state.count };
 }
-const HomePage = connect(mapStateToProps)(CountApp);
+const HomePage = connect(mapStateToProps)(Home);
+const SongPage = connect()(Song);
 
 // 3. Router
 app.router(({ history }) =>
   <Router history={history}>
     <Switch>
       <Route path="/" exact component={HomePage} />
+      <Route path="/song" exact component={SongPage} />
     </Switch>
   </Router>
 );
