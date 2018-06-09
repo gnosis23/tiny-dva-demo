@@ -1,16 +1,12 @@
 import React from 'react';
-import styles from './Home.less';
 import { Link } from 'react-router-dom';
+import {connect} from 'dva';
+import styles from './Home.less';
 import { songTimeFormat } from '../util/format';
 
 // const area
-const songs = [
-  {id: 1, name: '再见', artist: '张震岳', length: 183},
-  {id: 2, name: '爱我别走', artist: '张震岳', length: 240},
-  {id: 3, name: 'Aesthetic', artist: '泽野弘之', length: 233},
-];
 
-export default function Home()  {
+function Home({songs})  {
   const songList = songs.map(song => (
     <tr key={song.id}>
       <td><Link to={`/song/${song.id}`}>{song.name}</Link></td>
@@ -37,5 +33,10 @@ export default function Home()  {
       </table>
     </div>
   );
-
 }
+
+function mapStateToProps(state) {
+  return { songs: state.home.songs };
+}
+const HomePage = connect(mapStateToProps)(Home);
+export default HomePage;

@@ -4,9 +4,11 @@ import Home from './pages/Home';
 import Song from './pages/Song';
 import app from './dva';
 import count from './model/count';
+import home from './model/home';
 
 // Model
 app.model(count);
+app.model(home);
 
 // Router
 app.router(({ history }) =>
