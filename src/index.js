@@ -1,41 +1,19 @@
-import dva, { connect } from 'dva';
 import { Router, Route, Switch } from 'dva/router';
 
 import Home from './pages/Home';
 import Song from './pages/Song';
+import app from './dva';
+import count from './model/count';
 
-// 1. Initialize
-const app = dva();
+// Model
+app.model(count);
 
-// 2. Model
-// Remove the comment and define your model.
-app.model({
-  namespace: 'count',
-  subscriptions: {
-  },
-  effects: {
-  },
-  state: {
-    record: 0,
-    current: 0,
-  },
-  reducers: {
-  },
-});
-
-
-function mapStateToProps(state) {
-  return { count: state.count };
-}
-const HomePage = connect(mapStateToProps)(Home);
-const SongPage = connect()(Song);
-
-// 3. Router
+// Router
 app.router(({ history }) =>
   <Router history={history}>
     <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/song/:id" exact component={SongPage} />
+      <Route path="/" exact component={Home} />
+      <Route path="/song/:id" exact component={Song} />
     </Switch>
   </Router>
 );

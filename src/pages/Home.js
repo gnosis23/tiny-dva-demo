@@ -22,6 +22,7 @@ export default function Home()  {
   return (
     <div className={styles.home}>
       <h1>Listen to the music !!!</h1>
+      <button className={styles.addBtn}>+ 添加歌曲</button>
       <table>
         <thead>
           <tr>
