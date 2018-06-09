@@ -35,7 +35,7 @@ app.router(({ history }) =>
   <Router history={history}>
     <Switch>
       <Route path="/" exact component={HomePage} />
-      <Route path="/song" exact component={SongPage} />
+      <Route path="/song/:id" exact component={SongPage} />
     </Switch>
   </Router>
 );

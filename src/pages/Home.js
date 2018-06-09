@@ -13,7 +13,7 @@ const songs = [
 export default function Home()  {
   const songList = songs.map(song => (
     <tr key={song.id}>
-      <td><Link to="/song">{song.name}</Link></td>
+      <td><Link to={`/song/${song.id}`}>{song.name}</Link></td>
       <td>{song.artist}</td>
       <td>{songTimeFormat(song.length)}</td>
     </tr>
