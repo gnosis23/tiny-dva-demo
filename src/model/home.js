@@ -9,6 +9,15 @@ export default {
     ],
   },
   reducers: {
-
+    addSong(state, {payload: {song}}) {
+      const goodSong = {
+        ...song,
+        id: (new Date()).getMilliseconds(),
+      };
+      return {
+        ...state,
+        songs: state.songs.concat(goodSong),
+      };
+    }
   },
 };
