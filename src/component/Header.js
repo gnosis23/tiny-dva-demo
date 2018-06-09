@@ -8,7 +8,7 @@ export default function Header() {
   return (
     <header className={styles.hd}>
       <ul>
-        <li className={styles.logo}>Tiny-Dva-Demo</li>
+        <li className={styles.logo}><Link to="/">Tiny-Dva-Demo</Link></li>
         <li><Link to="/">Home</Link></li>
       </ul>
     </header>
