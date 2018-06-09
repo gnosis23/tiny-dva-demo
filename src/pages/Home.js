@@ -4,6 +4,7 @@ import {connect} from 'dva';
 import { routerRedux } from 'dva/router';
 import styles from './Home.less';
 import { songTimeFormat } from '../util/format';
+import Header from '../component/Header';
 
 // const area
 
@@ -23,24 +24,27 @@ class Home extends React.Component {
     ));
 
     return (
-      <div className={styles.home}>
-        <h1>Listen to the music !!!</h1>
-        <button
-          className={styles.addBtn}
-          onClick={this.handleAddSong}
-        >+ 添加歌曲</button>
-        <table>
-          <thead>
-          <tr>
-            <th>Name</th>
-            <th>Artist</th>
-            <th>Length</th>
-          </tr>
-          </thead>
-          <tbody>
-          {songList}
-          </tbody>
-        </table>
+      <div>
+        <Header/>
+        <div className={styles.home}>
+          <h1>Listen to the music !!!</h1>
+          <button
+            className={styles.addBtn}
+            onClick={this.handleAddSong}
+          >+ 添加歌曲</button>
+          <table>
+            <thead>
+            <tr>
+              <th>Name</th>
+              <th>Artist</th>
+              <th>Length</th>
+            </tr>
+            </thead>
+            <tbody>
+            {songList}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

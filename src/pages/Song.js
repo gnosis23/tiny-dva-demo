@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from '../component/Header';
 import styles from './Song.less';
 import {songTimeFormat} from '../util/format';
 
@@ -26,10 +27,13 @@ export default function Song(props) {
   });
 
   return (
-    <div className={styles.container}>
-      <h1>{song.name}</h1>
-      <h3>{id}</h3>
-      {lyricList}
+    <div>
+      <Header />
+      <div className={styles.container}>
+        <h1>{song.name}</h1>
+        <h3>{id}</h3>
+        {lyricList}
+      </div>
     </div>
   );
 
